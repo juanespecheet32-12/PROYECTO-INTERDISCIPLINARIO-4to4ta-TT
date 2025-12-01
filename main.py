@@ -159,13 +159,13 @@ def Registrar_Empleado():
     estado = 0
     Empleado_Insertar(nombre, rol, horario, estado)
 
-def Registrar_Turnos_Id(Id_Cliente):
+def Consultar_Turnos_Id(Id_Cliente):
     consulta = f"SELECT * FROM turnos WHERE id_cliente = {Id_Cliente};"
     cursor.execute(consulta)
     for x in cursor:
         print(x)
 
-def Registrar_Turnos_Patente(Patente):
+def Consultar_Turnos_Patente(Patente):
     consulta = f"""SELECT * 
     FROM turnos 
     WHERE id_cliente in(
@@ -176,7 +176,7 @@ def Registrar_Turnos_Patente(Patente):
     for x in cursor:
         print(x)
 
-def Registrar_Turnos_Telefono(Teléfono):
+def Consultar_Turnos_Telefono(Teléfono):
     consulta = f"""SELECT * 
     FROM turnos 
     WHERE id_cliente in(
@@ -187,7 +187,7 @@ def Registrar_Turnos_Telefono(Teléfono):
     for x in cursor:
         print(x)
 
-def Registrar_Turnos_Empleado(Nombre):
+def Consultar_Turnos_Empleado(Nombre):
     consulta = f"""SELECT * 
     FROM turnos 
     WHERE id_empleados in(
@@ -198,7 +198,7 @@ def Registrar_Turnos_Empleado(Nombre):
     for x in cursor:
         print(x)
 
-def Registrar_Turnos_Servicio(Nombre):
+def Consultar_Turnos_Servicio(Nombre):
     consulta = f"""SELECT * 
     FROM turnos 
     WHERE id_servicios in(
@@ -213,31 +213,32 @@ def Consultar_Turnos():
     while True:
         print("""
             ---------------------Menú-------------------------
-            1. Registrar turnos por id
-            2. Registrar turnos por patente
-            3. Registrar turnos por teléfono
-            4. Registrar turnos por empleado
-            5. Registrar turnos por servicio
+            1. Consultar turnos por id
+            2. Consultar turnos por patente
+            3. Consultar turnos por teléfono
+            4. Consultar turnos por empleado
+            5. Consultar turnos por servicio
             0. Salir
             --------------------------------------------------
             """)
-        opc = int(input("Ingrese que opcion quiere registrar: "))
+        opc = int(input("Ingrese que opcion quiere Consultar: "))
         if opc == 1:
             Id_Cliente = int(input("Ingrese la id del cliente: "))
-            Registrar_Turnos_Id(Id_Cliente)
+            Consultar_Turnos_Id(Id_Cliente)
         elif opc == 2:
             Patente = str(input("Ingrese la patente (XX-XXX-XX): "))
-            Registrar_Turnos_Patente(Patente)
+            Consultar_Turnos_Patente(Patente)
         elif opc == 3:
             Telefono = int(input("Ingrese el telefono (+54 9 11 XXX-XXX): "))
-            Registrar_Turnos_Telefono(Telefono)
+            Consultar_Turnos_Telefono(Telefono)
         elif opc == 4:
             Empleado = str(input("Ingrese el nombre del empleado: "))
-            Registrar_Turnos_Empleado(Empleado)
+            Consultar_Turnos_Empleado(Empleado)
         elif opc == 5:
             Servicio = str(input("Ingrese el nombre del servicio: "))
-            Registrar_Turnos_Servicio(Servicio)
+            Consultar_Turnos_Servicio(Servicio)
         elif opc == 0:
+            print("Saliendo del programa...")
             break
         else:
             print("Opcion invalida")
@@ -286,3 +287,4 @@ Consultar_Turnos()
 if cnx.is_connected():
     cnx.close()
     print("La conexión a la base de datos ha sido cerrada.")
+
